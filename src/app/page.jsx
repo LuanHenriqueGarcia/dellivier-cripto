@@ -11,6 +11,22 @@ function MainComponent() {
     { name: "StardustPay", symbol: "SDP", price: "234.56", change: "-0.98" },
     { name: "LunarChain", symbol: "LNC", price: "789.01", change: "+4.32" },
   ]);
+  const [performanceData] = useState({
+    CSM: [
+      { value: 45, month: "Jan" },
+      { value: 72, month: "Fev" },
+      { value: 63, month: "Mar" },
+      { value: 89, month: "Abr" },
+      { value: 92, month: "Mai" },
+      { value: 78, month: "Jun" },
+      { value: 85, month: "Jul" },
+      { value: 67, month: "Ago" },
+      { value: 73, month: "Set" },
+      { value: 88, month: "Out" },
+      { value: 95, month: "Nov" },
+      { value: 82, month: "Dez" },
+    ],
+  });
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1a1c34] to-[#0d0f23] text-white">
