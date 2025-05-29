@@ -12,30 +12,40 @@ function MainComponent() {
     { name: "LunarChain", symbol: "LNC", price: "789.01", change: "+4.32" },
   ]);
 
-  // ... resto do seu código existente ...
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1a1c34] to-[#0d0f23] text-white">
-      {/* ... código existente ... */}
-      
       <div className="container mx-auto px-4 sm:px-6 py-8">
         <div className="bg-[#252847] p-6 rounded-xl mb-8">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold">{selectedCrypto} Chart</h2>
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+            <div>
+              <h2 className="text-2xl font-bold">{selectedCrypto} Chart</h2>
+              <div className="flex items-center gap-2 mt-1">
+                <span className="text-2xl font-bold text-[#00ff88]">
+                  ${cryptoPrices.find(c => c.symbol === selectedCrypto)?.price}
+                </span>
+                <span className={`text-sm ${
+                  cryptoPrices.find(c => c.symbol === selectedCrypto)?.change.startsWith('+')
+                    ? 'text-green-400'
+                    : 'text-red-400'
+                }`}>
+                  {cryptoPrices.find(c => c.symbol === selectedCrypto)?.change}%
+                </span>
+              </div>
+            </div>
             <select
               value={selectedCrypto}
               onChange={(e) => setSelectedCrypto(e.target.value)}
-              className="bg-[#1e2035] border-none rounded-lg px-4 py-2 text-[#00ff88]"
+              className="bg-[#1e2035] border-none rounded-lg px-4 py-2 text-[#00ff88] focus:ring-2 focus:ring-[#00ff88] focus:outline-none"
             >
-              <option value="CSM">CosmosCoin</option>
-              <option value="QTM">QuantumToken</option>
-              <option value="NVC">NovaCash</option>
+              {cryptoPrices.map(crypto => (
+                <option key={crypto.symbol} value={crypto.symbol}>
+                  {crypto.name}
+                </option>
+              ))}
             </select>
           </div>
           <TradingChart symbol={selectedCrypto} />
         </div>
-        
-        {/* ... resto do seu código existente ... */}
       </div>
     </div>
   );
